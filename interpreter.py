@@ -132,7 +132,7 @@ class Interpreter:
     def op_cond_skip(self):
         if len(self.stack) < 1:
             raise Exception("\nStack underflow")
-        if self.stack[-1] == 0:
+        if self.stack[-1] != 0:
             self.move(self.direction)
     
 
@@ -147,8 +147,13 @@ class Interpreter:
         print(chr(self.pop_stack()), end='')
     
     def op_input(self):
-        self.stack.append(int(input()))
-
+        inp = input()
+        try:
+            int(inp)
+            self.stack.append(int(inp))
+        except:
+            for i in inp[::-1]:
+                self.stack.append(ord(i))
     
     def op_end(self):
         self.running = False
