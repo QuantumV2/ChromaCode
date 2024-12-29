@@ -1,3 +1,4 @@
+import random
 class Interpreter:
     def __init__(self, program):
         self.direction = (1,0)
@@ -34,6 +35,7 @@ class Interpreter:
             (0,128,128): self.op_print_str,
             (75,0,130): self.op_input,
             (139, 0, 0): self.op_end,
+            (64, 224, 208): self.rndpc,
 
         }
         self.ptr = 0
@@ -157,3 +159,6 @@ class Interpreter:
     
     def op_end(self):
         self.running = False
+    def rndpc(self):
+        dirs = ['left', 'right', 'up', 'down']
+        self.direction = self.DIRECTIONS[random.choice(dirs)]
