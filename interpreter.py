@@ -114,24 +114,30 @@ class Interpreter:
         self.stack[-1] -= 1
 
     def op_mul(self):
-        if len(self.stack) < 2:
-            raise Exception("\nStack underflow")
-        b = self.pop_stack()
-        a = self.pop_stack()
+        if len(self.stack) < 1:
+            a = 0
+            b = 0
+        else:
+            a = self.pop_stack()
+            b = self.pop_stack()
         self.stack.append(a * b)
 
     def op_add(self):
-        if len(self.stack) < 2:
-            raise Exception("\nStack underflow")
-        b = self.pop_stack()
-        a = self.pop_stack()
+        if len(self.stack) < 1:
+            a = 0
+            b = 0
+        else:
+            a = self.pop_stack()
+            b = self.pop_stack()
         self.stack.append(a + b)
 
     def op_sub(self):
-        if len(self.stack) < 2:
-            raise Exception("\nStack underflow")
-        b = self.pop_stack()
-        a = self.pop_stack()
+        if len(self.stack) < 1:
+            a = 0
+            b = 0
+        else:
+            a = self.pop_stack()
+            b = self.pop_stack()
         self.stack.append(a - b)
 
 
@@ -151,21 +157,25 @@ class Interpreter:
         self.pos += self.direction
     
     def op_cond_skip(self):
-        if len(self.stack) < 1:
-            raise Exception("\nStack underflow")
-        if self.stack[-1] != 0:
+        if self.stack and self.stack[-1] != 0:
             self.move(self.direction)
     
 
     def op_print_num(self):
         if len(self.stack) < 1:
-            raise Exception("\nStack underflow")
-        print(self.pop_stack(), end='')
+            val = 0
+        else:
+            val = self.pop_stack()
+
+        print(val, end='')
 
     def op_print_str(self):
         if len(self.stack) < 1:
-            raise Exception("\nStack underflow")
-        print(chr(self.pop_stack()), end='')
+            val = 0
+        else:
+            val = self.pop_stack()
+
+        print(chr(val), end='')
     
     def op_input(self):
         inp = input()
