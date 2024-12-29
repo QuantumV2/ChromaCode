@@ -32,6 +32,10 @@ The program counter is always moving, starting out moving to the right and the d
     #800080 - Inc: Increments the top value on the stack.
     
     #ffc0cb - Dec: Decrements the top value on the stack.
+
+    #ff0000 - Add: Adds the two top values on the stack.
+
+    #0000aa - Sub: Subtracts the two top values on the stack.
     
     #ff00ff - Mul: Multiplies the two top values on the stack.
     
@@ -59,3 +63,4 @@ The program counter is always moving, starting out moving to the right and the d
     
     #8b0000 - End: Terminates the program.
     
+    #00aa00 - RevStack: Reverses the stack. ([1,2,3,4] -> [4,3,2,1])

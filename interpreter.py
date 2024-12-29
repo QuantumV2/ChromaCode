@@ -23,6 +23,8 @@ class Interpreter:
             (255,208,0): self.op_swap,
             (128,0,128): self.op_inc,
             (255,192,203): self.op_dec,
+            (255, 0, 0): self.op_add,
+            (0, 0, 170): self.op_sub,
             (255,0,255): self.op_mul,
             (0,0,255): self.op_left,
             (0,0,80): self.op_right,
@@ -33,9 +35,10 @@ class Interpreter:
             (28, 27, 27): self.op_cond_skip,
             (0,255,255): self.op_print_num,
             (0,128,128): self.op_print_str,
+            (0,170,0): self.op_revstack,
             (75,0,130): self.op_input,
             (139, 0, 0): self.op_end,
-            (64, 224, 208): self.rndpc,
+            (64, 224, 208): self.op_rndpc,
 
         }
         self.ptr = 0
@@ -115,6 +118,20 @@ class Interpreter:
         a = self.pop_stack()
         self.stack.append(a * b)
 
+    def op_add(self):
+        if len(self.stack) < 2:
+            raise Exception("\nStack underflow")
+        b = self.pop_stack()
+        a = self.pop_stack()
+        self.stack.append(a + b)
+
+    def op_sub(self):
+        if len(self.stack) < 2:
+            raise Exception("\nStack underflow")
+        b = self.pop_stack()
+        a = self.pop_stack()
+        self.stack.append(a - b)
+
 
     def op_left(self):
         self.direction = self.DIRECTIONS['left']
@@ -159,6 +176,10 @@ class Interpreter:
     
     def op_end(self):
         self.running = False
-    def rndpc(self):
+
+    def op_rndpc(self):
         dirs = ['left', 'right', 'up', 'down']
         self.direction = self.DIRECTIONS[random.choice(dirs)]
+
+    def op_revstack(self):
+        self.stack = self.stack[::-1]
