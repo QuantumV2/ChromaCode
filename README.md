@@ -55,7 +55,7 @@ The program counter is always moving, starting out moving to the right and the d
     
     #008080 - PrintStr: Pops the stack and prints the Unicode character of the value.
     
-    #4b0082 - Input: Pushes a number inputted by user if the input is a number, if it's a string, pushes it to the stack in reverse order.
+    #4b0082 - Input: Pushes a number inputted by user to the stack if the input is a number, if it's a string, pushes it to the stack in reverse order.
     
     #8b0000 - End: Terminates the program.
     
