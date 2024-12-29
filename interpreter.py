@@ -1,4 +1,5 @@
 import random
+#import time
 class Interpreter:
     def __init__(self, program):
         self.direction = (1,0)
@@ -55,7 +56,8 @@ class Interpreter:
             color = tuple(self.program[self.pos[0]][self.pos[1]])
             if color in self.OPERATIONS:
                 self.OPERATIONS[color]()
-                #print("\n", self.pos, self.direction, self.memory, self.stack, color)
+                #print("\n", self.pos, self.direction, self.memory, self.stack, color, self.ptr)
+                #time.sleep(0.1)
             self.move(self.direction)
 
 
