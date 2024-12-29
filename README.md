@@ -7,6 +7,13 @@ ChromaCode is an esoteric 2d programming language that operates on infinite memo
 The program counter is always moving, starting out moving to the right and the direction being able to be altered by instructions.
 
 
+## Usage:
+1. Install PIL and Numpy.
+2. Create your program or choose one from the example folder.
+3. Run the script using `py main.py {path_to_program}.png`
+4. The program will be executed and the output will be displayed in the console.
+
+
 ## Instructions:
     #000088 - Load: Put a value from memory onto the stack.
     
