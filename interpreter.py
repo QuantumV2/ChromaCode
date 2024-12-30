@@ -1,4 +1,5 @@
 import random
+import sys
 #import time
 class Interpreter:
     def __init__(self, program):
@@ -51,6 +52,7 @@ class Interpreter:
         self.pos = tuple(map(sum,zip(self.pos,b)))
 
     def execute(self):
+        sys.set_int_max_str_digits(0)
         self.running = True
         while self.running:
             if (self.pos[0] < 0 or self.pos[1] < 0) or (self.pos[0] >= len(self.program) or 
