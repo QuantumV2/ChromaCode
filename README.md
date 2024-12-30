@@ -38,7 +38,11 @@ The program counter is always moving, starting out moving to the right and the d
     #0000aa - Sub: Subtracts the two top values on the stack.
     
     #ff00ff - Mul: Multiplies the two top values on the stack.
-    
+
+    #a0a0a0 - Div: Does integer division on the two top values on the stack.
+
+    #5c5c5c - Mod: Calculates the remainder of the top two values on the stack and pushes the result.
+
     #0000ff - Left: Set the program counter direction to "Left".
     
     #000050 - Right: Set the program counter direction to "Right".

@@ -27,6 +27,8 @@ class Interpreter:
             (255, 0, 0): self.op_add,
             (0, 0, 170): self.op_sub,
             (255,0,255): self.op_mul,
+            (160,160,160): self.op_div,
+            (92, 92, 92): self.op_mod,
             (0,0,255): self.op_left,
             (0,0,80): self.op_right,
             (0,255,0): self.op_up,
@@ -40,6 +42,7 @@ class Interpreter:
             (75,0,130): self.op_input,
             (139, 0, 0): self.op_end,
             (64, 224, 208): self.op_rndpc,
+            
 
         }
         self.ptr = 0
@@ -121,6 +124,20 @@ class Interpreter:
             a = self.pop_stack()
             b = self.pop_stack()
         self.stack.append(a * b)
+        
+    def op_div(self):
+        if len(self.stack) < 2:
+            raise Exception("\nStack underflow")
+        a = self.pop_stack()
+        b = self.pop_stack()
+        self.stack.append(a // b)   
+
+    def op_mod(self):
+        if len(self.stack) < 2:
+            raise Exception("\nStack underflow")
+        a = self.pop_stack()
+        b = self.pop_stack()
+        self.stack.append(a % b)   
 
     def op_add(self):
         if len(self.stack) < 1:
@@ -154,7 +171,7 @@ class Interpreter:
         self.direction = tuple( self.direction[0] * -1, self.direction[1] * -1 )
 
     def op_skip(self):
-        self.pos += self.direction
+        self.move(self.direction)
     
     def op_cond_skip(self):
         if self.stack and self.stack[-1] != 0:
